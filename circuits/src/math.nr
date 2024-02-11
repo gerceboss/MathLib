@@ -8,20 +8,18 @@ pub fn abs(a: Number) -> (Number) {
     ans
 }
 
-pub fn sqr_root_real(n: Number) -> (Number) {
+pub fn sqrt(n: Field) -> (Field) {
     //scaled n is in input and scale=1000
-    assert(n.sign == false);
     let mut j = 0;
     let mut flip= true;
-    //let mut ans=0;
-    let mut ans:Number= Number { sign: false, value: 0 };
-    for i in 1..n.value {
+    let mut ans:Field = 0;
+
+    for i in 1..n {
         j= i;
         if flip {
-            if (j * j) as i124 > n.value as i124 {
-                //j=n.value +1;
+            if (j * j) as i124 > n as i124 {
                 flip=false;
-                ans.value=(j-1);
+                ans=(j-1);
             }
         }
     }

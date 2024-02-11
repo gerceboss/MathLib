@@ -1,6 +1,6 @@
 use dep::std;
-use crate::fft::facts;
-use crate::fft::exponent;
+// use crate::fft::facts;
+// use crate::fft::exponent;
 use crate::math::Number;
 
 global scale=1000;
