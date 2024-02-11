@@ -1,0 +1,23 @@
+[c1]
+real = {sign = false, value = 5000}
+imag = {sign = false, value = 4000}
+
+[c2]
+real = {sign = false, value = 2000}
+imag = {sign = true, value = 1000}
+
+[c3]
+real = {sign = false, value = 30}
+imag = {sign = true, value = 40}
+
+[out_sub]
+real = {sign = false, value = 3000}
+imag = {sign = false, value = 5000}
+
+[out_mul]
+real = {sign = false, value = 14000}
+imag = {sign = false, value = 3000}
+
+[out_div]
+real = {sign = false, value = 1200}
+imag = {sign = false, value = 2600}

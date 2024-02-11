@@ -1,52 +1,32 @@
 use dep::std;
-use dep::std::collections::vec::Vec;
 
-// mod float;
-// mod trigonometry;
-mod math;
-// mod fft;
 mod complex;
+mod math;
 
 global scale = 1000;
 
-fn main() {
+fn main(c1 : complex::Complex, c2 : complex::Complex, out_sub : pub complex::Complex, out_mul : pub complex::Complex, out_div : pub complex::Complex) {
+    let out_1 = complex::subComplex(c1,c2);
+    assert(out_1.real.value == out_sub.real.value);
+    assert(out_1.imag.value == out_sub.imag.value);
+    assert(out_1.imag.sign == out_sub.imag.sign);
+    assert(out_1.real.sign == out_sub.real.sign);
 
-    let mut var1:Field= 2500;
-    let mut var2= math::Number { sign: true, value: 2 };
-    let mut var3= math::Number { sign: false, value: 3 };
-    std::println(math::abs(var2));
-    std::println(math::sqrt(var1));
-    // std::println(fft::exponent(var2, var3));
+    let out_2 = complex::mulComplex(c1,c2);
+    assert(out_2.real.value == out_mul.real.value);
+    assert(out_2.imag.value == out_mul.imag.value);
+    assert(out_2.imag.sign == out_mul.imag.sign);
+    assert(out_2.real.sign == out_mul.real.sign);
 
-    let n1 = complex::Number{
-        sign : false,
-        value : 5*scale
-    };
-    let n2 = complex::Number{
-        sign : false,
-        value : 4*scale
-    };
-    let n3 = complex::Number{
-        sign : false,
-        value : 2*scale
-    };
-    let n4 = complex::Number{
-        sign : true,
-        value : 1*scale
-    };
-    let c1 = complex::Complex{
-        real : n1,
-        imag : n2
-    };
-    let c2 = complex::Complex{
-        real : n3,
-        imag : n4
-    };
-    let answer = complex::divComplex(c1,c2);
-    std::println(answer);
+    let out_3 = complex::divComplex(c1,c2);
+    assert(out_3.real.value == out_div.real.value);
+    assert(out_3.imag.value == out_div.imag.value);
+    assert(out_3.imag.sign == out_div.imag.sign);
+    assert(out_3.real.sign == out_div.real.sign);
+
 }
 
 #[test]
 fn test_main() {
-    main();
+
 }
