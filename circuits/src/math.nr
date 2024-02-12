@@ -8,21 +8,47 @@ pub fn abs(a: Number) -> (Number) {
     ans
 }
 
-pub fn sqrt(n: Field) -> (Field) {
-    //scaled n is in input and scale=1000
-    let mut j = 0;
-    let mut flip= true;
-    let mut ans:Field = 0;
-
-    for i in 1..n {
-        j= i;
-        if flip {
-            if (j * j) as i124 > n as i124 {
-                flip=false;
-                ans=(j-1);
-            }
-        }
+pub fn sqrt(x : u126) -> u126 {
+    if x==0{
+        x
     }
-    ans
+
+    let mut xAux = x;
+    let mut result = 1 as u126;
+
+    if (xAux >= 0x100000000 ) {
+        xAux >>= 32;
+        result <<= 16;
+    }
+    if (xAux >= 0x10000) {
+        xAux >>= 16;
+        result <<= 8;
+    }
+    if (xAux >= 0x100) {
+        xAux >>= 8;
+        result <<= 4;
+    }
+    if (xAux >= 0x10) {
+        xAux >>= 4;
+        result <<= 2;
+    }
+    if (xAux >= 0x4) {
+        result <<= 1;
+    }
+    result = (result + x / result) >> 1;
+    result = (result + x / result) >> 1;
+    result = (result + x / result) >> 1;
+    result = (result + x / result) >> 1;
+    result = (result + x / result) >> 1;
+    result = (result + x / result) >> 1;
+    result = (result + x / result) >> 1; // Seven iterations should be enough
+    let roundedDownResult = x / result;
+    let mut final_res = 0 as u126;
+    //  = result >= roundedDownResult ? roundedDownResult : result
+    if result >= roundedDownResult {
+        final_res = roundedDownResult;
+    } else {
+        final_res = result;
+    }
+    final_res
 }
-pub fn sqr_root_com() {}

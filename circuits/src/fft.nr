@@ -7,7 +7,7 @@ use crate::trigonometry::cos;
 global facts=[1,1,2,6,24,120,720,5040,40320,362880,3628800,39916800]; // 0 to 10 factorial
 global PI=314;
 global scale_for_PI=100;
-global scale=100000;
+global scale=10000;
 
 //using cd=complex<double>
 pub fn fft(a: &mut Vec<Number>, invert: bool) {

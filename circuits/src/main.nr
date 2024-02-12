@@ -3,7 +3,7 @@ use dep::std;
 mod complex;
 mod math;
 
-global scale = 1000;
+global scale = 10000;
 
 fn main(c1 : complex::Complex, c2 : complex::Complex, out_sub : pub complex::Complex, out_mul : pub complex::Complex, out_div : pub complex::Complex) {
     let out_1 = complex::subComplex(c1,c2);

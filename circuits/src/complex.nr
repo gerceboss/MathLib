@@ -1,7 +1,7 @@
 use dep::std;
 use crate::math::sqrt;
 
-global scale = 1000;
+global scale = 10000;
 
 struct Number {
     sign : bool,
