@@ -133,6 +133,32 @@ pub fn magnitude(x : Complex) -> Field{
     let real = x.real.value;
     let imag = x.imag.value;
     let r2 = real*real + imag*imag;
-    let r = sqrt(r2);
-    r
+    let r = sqrt(r2 as u126);
+    let ans = r as Field;
+    ans
+}
+
+pub fn sqrtComplex(x : Complex) -> Complex{
+    let r2 = Number {sign : false, value : magnitude(x)};
+    let r = x.real;
+    std::println(r2);
+    std::println(r);
+    let tmp1 = subNum(r2,r);
+    let tmp2 = addNum(r2,r);
+    let tmp3 = (tmp1.value as u126)/2;
+    let tmp4 = (tmp2.value as u126)/2;
+    let tmp5 = sqrt(tmp4);
+    let tmp6 = sqrt(tmp3);
+    let r_val = tmp5 as Field;
+    let i_val = tmp6 as Field;
+    let r_sign = false;
+    let i_sign = x.imag.sign;
+    let r_ = Number{sign : r_sign, value: r_val};
+    let i_ = Number{sign : i_sign, value: i_val};
+    let ans = Complex{
+        real : r_,
+        imag : i_
+    };
+    ans
+
 }

@@ -41,10 +41,10 @@ pub fn sqrt(x : u126) -> u126 {
     result = (result + x / result) >> 1;
     result = (result + x / result) >> 1;
     result = (result + x / result) >> 1;
-    result = (result + x / result) >> 1; // Seven iterations should be enough
+    result = (result + x / result) >> 1; 
     let roundedDownResult = x / result;
     let mut final_res = 0 as u126;
-    //  = result >= roundedDownResult ? roundedDownResult : result
+
     if result >= roundedDownResult {
         final_res = roundedDownResult;
     } else {
