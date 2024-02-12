@@ -4,6 +4,6 @@
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
   "/complex": "pages/complex.js",
-  "/fourier": "pages/fourier.js",
-  "/trigonometry": "pages/trigonometry.js"
+  "/trigonometry": "pages/trigonometry.js",
+  "/fourier": "pages/fourier.js"
 }

@@ -5,6 +5,7 @@ import Header from "./../../components/header";
 function Trigonometry() {
   const [sinA, setcosA] = useState("0");
   const [cosB, setcosB] = useState("0");
+  const [outputHash, setOutputHash] = useState(""); //add hex check also
   //a ,b are strings as of now
 
   function handleClick() {}
@@ -21,8 +22,12 @@ function Trigonometry() {
           <input onChange={(e) => setcosB(e.target.value)}></input>
         </div>
 
+        <div className="form-group">
+          <label>Output Hash:</label>
+          <input onChange={(e) => setOutputHash(e.target.value)}></input>
+        </div>
         <button className="submit-btn" onClick={handleClick}>
-          Submit
+          Generate Proof
         </button>
       </div>
     </>
