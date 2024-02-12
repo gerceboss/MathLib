@@ -8,15 +8,15 @@ pub fn abs(a: Number) -> (Number) {
     ans
 }
 
-pub fn sqrt(x : u126) -> u126 {
-    if x==0{
+pub fn sqrt(x: u126) -> u126 {
+    if x == 0 {
         x
     }
 
     let mut xAux = x;
     let mut result = 1 as u126;
 
-    if (xAux >= 0x100000000 ) {
+    if (xAux >= 0x100000000) {
         xAux >>= 32;
         result <<= 16;
     }

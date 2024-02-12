@@ -10,11 +10,11 @@ struct Float {
 global precision : Field = 7;
 
 // ReLU activation function used for neural network ML models
-fn relu(x : Float) -> Float {
+fn relu(x: Float) -> Float {
     let mut res = x;
     if x.sign as u64 == 1 {
         res = Float { sign: 0, mantissa: 0, exponent: 100 };
-    } 
+    }
 
     res
 }
@@ -46,7 +46,7 @@ fn truncate(num: Float) -> Float {
         1000000000000000000000,
         10000000000000000000000,
         100000000000000000000000,
-        1000000000000000000000000,
+        1000000000000000000000000
     ];
 
     let maxValue : Field = 10.pow_32(precision);
@@ -57,7 +57,7 @@ fn truncate(num: Float) -> Float {
         if num.mantissa as u64 >= lookup[i] as u64 {
             decValue = lookup[i];
             logValue = i;
-        }  
+        }
     }
 
     decValue *= 10;
@@ -67,7 +67,7 @@ fn truncate(num: Float) -> Float {
 
     if logValue as u64 > precision as u64 {
         let diff = (decValue / maxValue) as u64;
-        res = Float { sign: num.sign, mantissa: (num.mantissa as u64 / diff) as Field, exponent: num.exponent + (logValue - precision)};  // 
+        res = Float { sign: num.sign, mantissa: (num.mantissa as u64 / diff) as Field, exponent: num.exponent + (logValue - precision)}; // 
     }
 
     if res.mantissa == 0 {
@@ -78,7 +78,7 @@ fn truncate(num: Float) -> Float {
 }
 
 // Multiplication of Float complex::Numbers
-fn mulFloats(x : Float, y : Float) -> Float {
+fn mulFloats(x: Float, y: Float) -> Float {
     let mant = x.mantissa * y.mantissa;
     let exp = x.exponent + y.exponent - 100;
     let mut sign : Field = 0;
@@ -87,12 +87,11 @@ fn mulFloats(x : Float, y : Float) -> Float {
         sign = 1;
     }
 
-    truncate(Float { sign: sign, mantissa: mant, exponent: exp })
+    truncate(Float { sign, mantissa: mant, exponent: exp })
 }
 
 // Dividing of Float complex::Numbers
-fn divFloats(x : Float, y: Float) -> Float {
-
+fn divFloats(x: Float, y: Float) -> Float {
     assert(y.mantissa as i64 > 0);
 
     let mut exp1: Field = x.exponent;
@@ -127,11 +126,11 @@ fn divFloats(x : Float, y: Float) -> Float {
         new_sign = 1;
     }
 
-    Float{sign: new_sign, mantissa: new_mant as Field, exponent: new_exp}
+    Float { sign: new_sign, mantissa: new_mant as Field, exponent: new_exp }
 }
 
 // Sumation of Float complex::Numbers
-fn addFloats(x : Float, y : Float) -> Float {
+fn addFloats(x: Float, y: Float) -> Float {
     let mut mant_1 = x.mantissa;
     let mut mant_2 = y.mantissa;
 
@@ -140,7 +139,7 @@ fn addFloats(x : Float, y : Float) -> Float {
 
     let mut diff : Field = 0;
 
-    if exp_1 as u64 > exp_2 as u64 { 
+    if exp_1 as u64 > exp_2 as u64 {
         diff = exp_1 - exp_2;
     } else {
         diff = exp_2 - exp_1;
@@ -149,11 +148,11 @@ fn addFloats(x : Float, y : Float) -> Float {
     let mut pow10 : Field = 10.pow_32(diff);
 
     if x.exponent as u64 < y.exponent as u64 {
-      mant_2 *= pow10;
-      exp_1 = x.exponent;
+        mant_2 *= pow10;
+        exp_1 = x.exponent;
     } else {
-      mant_1 *= pow10;
-      exp_1 = y.exponent;
+        mant_1 *= pow10;
+        exp_1 = y.exponent;
     }
 
     let mut sum_mant = mant_1 + mant_2;
@@ -167,11 +166,14 @@ fn addFloats(x : Float, y : Float) -> Float {
             sign = y.sign;
         }
     }
-    
-    truncate(Float { sign: sign, mantissa: sum_mant, exponent: exp_1 })
+
+    truncate(Float { sign, mantissa: sum_mant, exponent: exp_1 })
 }
 
 // Subtraction of float complex::Numbers
-fn subFloats(x : Float, y : Float) -> Float {
-    addFloats(x, Float { sign: 1 - y.sign, mantissa: y.mantissa, exponent: y.exponent })
+fn subFloats(x: Float, y: Float) -> Float {
+    addFloats(
+        x,
+        Float { sign: 1 - y.sign, mantissa: y.mantissa, exponent: y.exponent }
+    )
 }
