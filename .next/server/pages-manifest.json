@@ -1,8 +1,7 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/complex": "pages/complex.js",
-  "/fourier": "pages/fourier.js",
-  "/trigonometry": "pages/trigonometry.js"
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/complex": "pages/complex.js"
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { toast } from "react-toastify";
 import Ethers from "./../../utils/ethers";
@@ -6,10 +6,10 @@ import "./index.css";
 import Header from "./../../components/header";
 
 function Complex() {
-  const [A, setA] = useState("0");
-  const [B, setB] = useState("0");
-  const [C, setC] = useState("0");
-  const [D, setD] = useState("0");
+  const [A, setA] = useState("");
+  const [B, setB] = useState("");
+  const [C, setC] = useState("");
+  const [D, setD] = useState("");
   const [outputHashSub, setOutputHashSub] = useState(""); //add hex check also
   const [outputHashDiv, setOutputHashDiv] = useState(""); //add hex check also
   const [outputHashMul, setOutputHashMul] = useState(""); //add hex check also
@@ -33,6 +33,11 @@ function Complex() {
     setInput({ ...input, [e.target.name]: e.target.value });
     console.log(input);
   };
+
+  function changeValues(a: string) {
+    const val = a[0] == "-" ? a.substring(1) : a;
+    return val;
+  }
   // Calculates proof
   const calculateProof = async () => {
     // only launch if we do have an acir to calculate the proof from
@@ -57,18 +62,48 @@ function Complex() {
       );
 
       // handling the response from the worker
+      // sending the acir and input to the worker
+      const input_2 = {
+        c1: {
+          real: {
+            sign: input.A[0] == "-",
+            value: changeValues(input.A),
+          },
+          imag: {
+            sign: input.B[0] == "-",
+            value: changeValues(input.B),
+          },
+        },
+        c2: {
+          real: {
+            sign: input.C[0] == "-",
+            value: changeValues(input.C),
+          },
+          imag: {
+            sign: input.D[0] == "-",
+            value: changeValues(input.D),
+          },
+        },
+        out_sub: input.subAns,
+        out_mul: input.mulAns,
+        out_div: input.divAns,
+      };
+      //console.log(input_2);
+
       worker.onmessage = (e) => {
+        console.log(e.data);
         if (e.data instanceof Error) {
           toast.error("Error while calculating proof");
           setPending(false);
         } else {
+          console.log(e.data);
           toast.success("Proof calculated");
           setProof(e.data);
           setPending(false);
         }
       };
-      // sending the acir and input to the worker
-      worker.postMessage({ input });
+
+      worker.postMessage({ input_2 });
     }
   };
   const verifyProof = async () => {
@@ -102,6 +137,35 @@ function Complex() {
       worker.postMessage({ proof });
     }
   };
+
+  // Verifier the proof if there's one in state
+  useEffect(() => {
+    setInput({
+      ...input,
+      A: "",
+      B: "",
+      C: "",
+      D: "",
+      subAns: "",
+      mulAns: "",
+      divAns: "",
+    });
+
+    if (proof) {
+      verifyProof();
+    }
+  }, [proof]);
+
+  useEffect(() => {
+    new Ethers();
+  }, []);
+
+  // Shows verification result
+  useEffect(() => {
+    if (verification) {
+      toast.success("Proof verified!");
+    }
+  }, [verification]);
 
   // const handleClick = (e) => {};
   return (
