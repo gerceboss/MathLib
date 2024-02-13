@@ -8,27 +8,22 @@ global scale = 10000;
 fn main(
     c1: complex::Complex,
     c2: complex::Complex,
-    out_sub: pub complex::Complex,
-    out_mul: pub complex::Complex,
-    out_div: pub complex::Complex
+    out_sub: pub Field,
+    out_mul: pub Field,
+    out_div: pub Field
 ) {
     let out_1 = complex::subComplex(c1, c2);
-    assert(out_1.real.value == out_sub.real.value);
-    assert(out_1.imag.value == out_sub.imag.value);
-    assert(out_1.imag.sign == out_sub.imag.sign);
-    assert(out_1.real.sign == out_sub.real.sign);
+    let out_hash_1 = std::hash::pedersen_hash([out_1.real.sign as Field,out_1.real.value, out_1.imag.sign as Field, out_1.imag.value]);
+    assert(out_hash_1 == out_sub);
 
     let out_2 = complex::mulComplex(c1, c2);
-    assert(out_2.real.value == out_mul.real.value);
-    assert(out_2.imag.value == out_mul.imag.value);
-    assert(out_2.imag.sign == out_mul.imag.sign);
-    assert(out_2.real.sign == out_mul.real.sign);
+    let out_hash_2 = std::hash::pedersen_hash([out_2.real.sign as Field,out_2.real.value,out_2.imag.sign as Field, out_2.imag.value]);
+    assert(out_hash_2 == out_mul);  
 
     let out_3 = complex::divComplex(c1, c2);
-    assert(out_3.real.value == out_div.real.value);
-    assert(out_3.imag.value == out_div.imag.value);
-    assert(out_3.imag.sign == out_div.imag.sign);
-    assert(out_3.real.sign == out_div.real.sign);
+    let out_hash_3 = std::hash::pedersen_hash([out_3.real.sign as Field,out_3.real.value,out_3.imag.sign as Field, out_3.imag.value]);
+    assert(out_hash_3 == out_div);
+
 }
 
 #[test]
