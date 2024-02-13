@@ -31,7 +31,7 @@ function Complex() {
   const handleChange = (e) => {
     e.preventDefault();
     setInput({ ...input, [e.target.name]: e.target.value });
-    console.log(input);
+    // console.log(input);
   };
 
   function changeValues(a: string) {
@@ -60,6 +60,7 @@ function Complex() {
       const worker = new Worker(
         new URL("./../../utils/prover.ts", import.meta.url)
       );
+      console.log(worker);
 
       // handling the response from the worker
       // sending the acir and input to the worker
@@ -88,7 +89,7 @@ function Complex() {
         out_mul: input.mulAns,
         out_div: input.divAns,
       };
-      //console.log(input_2);
+      // console.log(input_2);
 
       worker.onmessage = (e) => {
         console.log(e.data);
@@ -103,7 +104,7 @@ function Complex() {
         }
       };
 
-      worker.postMessage({ input_2 });
+      worker.postMessage({ input });
     }
   };
   const verifyProof = async () => {

@@ -6,6 +6,7 @@ onmessage = async (event) => {
   try {
     console.log(event.data);
     const { input } = event.data;
+    console.log(input.A);
 
     function changeValues(a: string) {
       const val = a[0] == "-" ? a.substring(1) : a;
@@ -36,7 +37,7 @@ onmessage = async (event) => {
       out_mul: input.mulAns,
       out_div: input.divAns,
     };
-    console.log(input_2);
+    // console.log(input_2);
     // const input_2 = Object.entries(input).reduce((newObj, [key, value]) => {
     //   //changed format a bit
     //   newObj[key] = (value as number).toString();
