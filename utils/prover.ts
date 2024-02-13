@@ -1,24 +1,24 @@
 // @ts-ignore
-import { NoirBrowser } from '../utils/noir/noirBrowser';
+import { NoirBrowser } from "./../utils/noir/noirBrowser";
 
 // // Add an event listener for the message event
-onmessage = async event => {
+onmessage = async (event) => {
   try {
     const { input } = event.data;
     const hexInputObj = Object.entries(input).reduce((newObj, [key, value]) => {
-      newObj[key] = (value as number).toString(16).padStart(2, '0');
+      //changed format a bit
+      newObj[key] = value as number;
       return newObj;
     }, {});
 
-
     const noir = new NoirBrowser();
     await noir.compile();
-    const proof = await noir.createProof({ input: hexInputObj })
-    console.log(hexInputObj)
+    const proof = await noir.createProof({ input: hexInputObj });
+    console.log(hexInputObj);
     postMessage(proof);
-  } catch (er) {
-    console.log(er);
-    postMessage(er);
+  } catch (err) {
+    console.log(err);
+    postMessage(err);
   } finally {
     close();
   }

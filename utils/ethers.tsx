@@ -1,7 +1,7 @@
-import { ethers } from 'ethers';
-import addresses from './addresses.json';
-import artifacts from '../artifacts/contract/plonk_vk.sol/TurboVerifier.json';
-// import { toast } from 'react-toastify';
+import { ethers } from "ethers";
+import addresses from "./addresses.json";
+// import artifacts from '../artifacts/contract/plonk_vk.sol/TurboVerifier.json';
+import { toast } from "react-toastify";
 
 declare global {
   interface Window {
@@ -23,27 +23,34 @@ class Ethers {
     this.utils = ethers.utils;
     this.signer = this.provider.getSigner();
 
-    this.contract = new ethers.Contract(addresses.verifier, artifacts.abi, this.signer);
+    this.contract = new ethers.Contract(
+      addresses.verifier,
+      [],
+      // artifacts.abi,
+      this.signer
+    );
     this.connect();
   }
 
   async connect() {
-    if (typeof window.ethereum !== 'undefined') {
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
+    if (typeof window.ethereum !== "undefined") {
+      await window.ethereum.request({ method: "eth_requestAccounts" });
 
-      const currentNetworkId = parseInt(await window.ethereum.request({ method: 'net_version' }));
+      const currentNetworkId = parseInt(
+        await window.ethereum.request({ method: "net_version" })
+      );
       if (currentNetworkId !== addresses.chainId) {
         try {
           await window.ethereum.request({
-            method: 'wallet_switchEthereumChain',
+            method: "wallet_switchEthereumChain",
             params: [{ chainId: `0x${addresses.chainId.toString(16)}` }],
           });
         } catch (error) {
-          console.error('Error switching network:', error);
+          console.error("Error switching network:", error);
           if (error.code === 4902) {
-            alert('Please add the network to your MetaMask wallet.');
+            alert("Please add the network to your MetaMask wallet.");
           } else {
-            console.error('User rejected the request.');
+            console.error("User rejected the request.");
           }
         }
       }

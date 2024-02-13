@@ -1,8 +1,8 @@
 // @ts-ignore
-import { NoirBrowser } from '../utils/noir/noirBrowser';
+import { NoirBrowser } from "./../utils/noir/noirBrowser";
 
 // // Add an event listener for the message event
-onmessage = async event => {
+onmessage = async (event) => {
   try {
     const { proof } = event.data;
 
