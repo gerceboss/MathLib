@@ -1,19 +1,7 @@
-[c1]
-real = {sign = false, value = 5000}
-imag = {sign = false, value = 4000}
+c1 = {real = {sign = false, value = "5000"}, imag = {sign = false, value = "4000"}}
 
-[c2]
-real = {sign = false, value = 2000}
-imag = {sign = true, value = 1000}
+c2 = {real = {sign = false, value = "2000"}, imag = {sign = true, value = "1000"}}
 
-[out_sub]
-real = {sign = false, value = 3000}
-imag = {sign = false, value = 5000}
-
-[out_mul]
-real = {sign = false, value = 14000}
-imag = {sign = false, value = 3000}
-
-[out_div]
-real = {sign = false, value = 1200}
-imag = {sign = false, value = 2600}
+out_sub = "0x1826290f7347bbbca061fbec31e0aa6c14f78f05d3fb1cb406c10289e009a32d"
+out_mul = "0x1aa74126403b996652a80a996307d7288230c1ca9483e68ef60d447e4cf48f25"
+out_div = "0x1a5103a050f4d95f7cc22a466fe51245ab8f215d7b481b358ec12ba24eebb914"
