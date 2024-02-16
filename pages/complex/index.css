@@ -57,3 +57,14 @@ body {
   text-align: center;
   font-size: 6em;
 }
+
+.proof{
+  margin: 4px, 4px;
+  padding: 4px;
+  background-color: rgb(250, 255, 250);
+  width: 500px;
+  height: 110px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+}
