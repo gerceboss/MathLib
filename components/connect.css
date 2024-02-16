@@ -21,13 +21,13 @@
   align-items: center;
   height: 100vh;
   width: auto;
-  background-image: linear-gradient(to right, blue, red);
+  background-color: rgb(108, 191, 114);
 }
 
 .metamaskBtn {
   padding: 10px 20px;
   font-size: 18px;
-  background-color: #4caf50; /* Green */
+  background-color: #273927; /* Green */
   color: white;
   border: none;
   border-radius: 5px;
@@ -37,7 +37,7 @@
 }
 
 .metamaskBtn:hover {
-  background-color: #45a049; /* Darker green on hover */
+  background-color: #1d371e; /* Darker green on hover */
 }
 
 .connectedContainer {
@@ -45,7 +45,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(to right, blue, red);
+  background-color: rgb(108, 191, 114);
   height: 100vh;
   width: 100vw;
 }

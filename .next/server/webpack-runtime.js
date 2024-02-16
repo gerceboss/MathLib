@@ -44,6 +44,11 @@
 /******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/amd options */
+/******/ 	(() => {
+/******/ 		__webpack_require__.amdO = {};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/async module */
 /******/ 	(() => {
 /******/ 		var webpackQueues = typeof Symbol === "function" ? Symbol("webpack queues") : "__webpack_queues__";
@@ -187,14 +192,9 @@
 /******/ 		}
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		__webpack_require__.p = "/_next/";
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/require chunk loading */
 /******/ 	(() => {
-/******/ 		__webpack_require__.b = require("url").pathToFileURL(__filename);
+/******/ 		// no baseURI
 /******/ 		
 /******/ 		// object to store loaded chunks
 /******/ 		// "1" means "loaded", otherwise not loaded yet
