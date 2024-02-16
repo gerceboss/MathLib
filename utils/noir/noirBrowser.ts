@@ -7,8 +7,9 @@ import { setup_generic_prover_and_verifier } from "@noir-lang/barretenberg";
 import { Noir } from "./noir";
 
 const listCircuits = async () => {
-  const response = await fetch("./../../pages/api/listDirectory");
+  const response = await fetch("http://localhost:3000/api/listDirectory");
   const data = await response.json();
+  //console.log(data);
   const files = data.files;
   return files;
 };
@@ -16,7 +17,7 @@ const listCircuits = async () => {
 const getCode = async () => {
   let code: { [key: string]: string } = {};
   for (const path of await listCircuits()) {
-    const fileUrl = `./../../pages/api/readCircuitFile?filename=${path.replace(
+    const fileUrl = `../../../api/readCircuitFile?filename=${path.replace(
       "/",
       ""
     )}`;
@@ -24,6 +25,8 @@ const getCode = async () => {
       .then((r) => r.text())
       .then((code) => code);
   }
+  console.log(code);
+  //console.log("printed");
   return code;
 };
 
@@ -33,8 +36,10 @@ export class NoirBrowser extends Noir {
     // that's why we have this parameter codeURL
     await initNoirWasm();
     const code = await getCode();
-    initialiseResolver((id: any) => {
+    //console.log(code);
+    await initialiseResolver((id: any) => {
       console.log(id);
+      //console.log(code[id]);
       return code[id];
     });
 

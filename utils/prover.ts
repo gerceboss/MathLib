@@ -4,9 +4,9 @@ import { NoirBrowser } from "./../utils/noir/noirBrowser";
 // // Add an event listener for the message event
 onmessage = async (event) => {
   try {
-    console.log(event.data);
+    //console.log(event.data);
     const { input } = event.data;
-    console.log(input.A);
+    // console.log(input.A);
 
     function changeValues(a: string) {
       const val = a[0] == "-" ? a.substring(1) : a;
@@ -37,16 +37,14 @@ onmessage = async (event) => {
       out_mul: input.mulAns,
       out_div: input.divAns,
     };
-    // console.log(input_2);
-    // const input_2 = Object.entries(input).reduce((newObj, [key, value]) => {
-    //   //changed format a bit
-    //   newObj[key] = (value as number).toString();
-    //   return newObj;
-    // }, {});
+    //console.log(input_2);
 
     const noir = new NoirBrowser();
+    //console.log(noir);
+
     await noir.compile();
     const proof = await noir.createProof({ input: input_2 });
+    console.log(proof);
     console.log(input_2);
     postMessage(proof);
   } catch (err) {

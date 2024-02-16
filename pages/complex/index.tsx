@@ -38,6 +38,9 @@ function Complex() {
     const val = a[0] == "-" ? a.substring(1) : a;
     return val;
   }
+
+
+
   // Calculates proof
   const calculateProof = async () => {
     // only launch if we do have an acir to calculate the proof from
