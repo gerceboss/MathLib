@@ -179,50 +179,52 @@ function Complex() {
   return (
     <>
       <Header />
-      <div className="titlePage">COMPLEX</div>
-      <div className="formMetamask">
-        <h2>First Number</h2>
-        <div className="form-group">
-          <label>real part:</label>
-          <input name="A" onChange={handleChange}></input>
-          <label>imaginary part:</label>
-          <input name="B" onChange={handleChange}></input>
-        </div>
+      <center>
+        <div className="titlePage">COMPLEX</div>
+        <div className="formMetamask">
+          <h2>First Number</h2>
+          <div className="form-group">
+            <label>real part:</label>
+            <input name="A" onChange={handleChange}></input>
+            <label>imaginary part:</label>
+            <input name="B" onChange={handleChange}></input>
+          </div>
 
-        <h2>Second Number</h2>
-        <div className="form-group">
-          <label>real part:</label>
-          <input name="C" onChange={handleChange}></input>
-          <label>imaginary part:</label>
-          <input name="D" onChange={handleChange}></input>
-        </div>
+          <h2>Second Number</h2>
+          <div className="form-group">
+            <label>real part:</label>
+            <input name="C" onChange={handleChange}></input>
+            <label>imaginary part:</label>
+            <input name="D" onChange={handleChange}></input>
+          </div>
 
-        {/* <h2>Operator</h2>
+          {/* <h2>Operator</h2>
         <div className="form-group">
           <label>Operator:</label>
           <input onChange={(e) => setOp(e.target.value)}></input>
         </div> */}
 
-        {/* <h2>Output Hash</h2> */}
-        <div className="form-group">
-          <label>Output Hash Sub:</label>
-          <input name="subAns" onChange={handleChange}></input>
-        </div>
-        <div className="form-group">
-          <label>Output Hash Mul:</label>
-          <input name="mulAns" onChange={handleChange}></input>
-        </div>
-        <div className="form-group">
-          <label>Output Hash Div:</label>
-          <input name="divAns" onChange={handleChange}></input>
-        </div>
+          {/* <h2>Output Hash</h2> */}
+          <div className="form-group">
+            <label>Output Hash Sub:</label>
+            <input name="subAns" onChange={handleChange}></input>
+          </div>
+          <div className="form-group">
+            <label>Output Hash Mul:</label>
+            <input name="mulAns" onChange={handleChange}></input>
+          </div>
+          <div className="form-group">
+            <label>Output Hash Div:</label>
+            <input name="divAns" onChange={handleChange}></input>
+          </div>
 
-        <button className="submit-btn" onClick={calculateProof}>
-          Generate Proof
-        </button>
+          <button className="submit-btn" onClick={calculateProof}>
+            Generate Proof
+          </button>
 
-        <div className="proof">{proof}</div>
-      </div>
+          <div className="proof">{proof}</div>
+        </div>
+      </center>
     </>
   );
 }
