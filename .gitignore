@@ -1,5 +1,8 @@
 target/
 proofs/
 node_modules
+cache/*
+artifacts/
 .env
 .next
+

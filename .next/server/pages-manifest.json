@@ -1,12 +1,6 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
-<<<<<<< HEAD
-  "/api/readCircuitFile": "pages/api/readCircuitFile.js",
-  "/api/listDirectory": "pages/api/listDirectory.js",
-=======
   "/_error": "pages/_error.js",
-  "/": "pages/index.js",
->>>>>>> cad3885c57eae65184d025100f257c10be1a18a7
-  "/complex": "pages/complex.js"
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js"
 }
