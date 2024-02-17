@@ -5,8 +5,7 @@ import Header from "./../../components/header";
 function Trigonometry() {
   const [sinA, setcosA] = useState("0");
   const [cosB, setcosB] = useState("0");
-  const [outputHash, setOutputHash] = useState(""); //add hex check also
-  //a ,b are strings as of now
+  const [outputHash, setOutputHash] = useState("");
 
   function handleClick() {}
   return (
@@ -14,7 +13,6 @@ function Trigonometry() {
       <Header />
       <div className="titlePage">TRIGONOMETRY</div>
       <div className="formMetamask">
-        {/* <h2>Trigonometry</h2> */}
         <div className="form-group">
           <label>sin:</label>
           <input onChange={(e) => setcosA(e.target.value)}></input>

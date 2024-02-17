@@ -4,17 +4,15 @@ import Header from "../../components/header";
 function Fourier() {
   const [arr1, setArr1] = useState([]);
   const [arr2, setArr2] = useState([]);
-  const [outputHash, setOutputHash] = useState(""); //add hex check also
+  const [outputHash, setOutputHash] = useState("");
   function callArr1(val) {
     setArr1(val);
-    //console.log(val, typeof val);
   }
   function callArr2(val) {
     setArr2(val);
   }
   function handleClick() {
     console.log(arr1, typeof arr1[0]);
-    //they are string for now
   }
   return (
     <>

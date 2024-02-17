@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-import Web3 from "web3";
+
 import { toast } from "react-toastify";
 import Ethers from "./../../utils/ethers";
 import "./index.css";
 import Header from "./../../components/header";
-import ABI from "./../../utils/ABI.json";
 
 function Complex() {
   const [A, setA] = useState("");
   const [B, setB] = useState("");
   const [C, setC] = useState("");
   const [D, setD] = useState("");
-  const [outputHashSub, setOutputHashSub] = useState(""); //add hex check also
-  const [outputHashDiv, setOutputHashDiv] = useState(""); //add hex check also
-  const [outputHashMul, setOutputHashMul] = useState(""); //add hex check also
+  const [outputHashSub, setOutputHashSub] = useState("");
+  const [outputHashDiv, setOutputHashDiv] = useState("");
+  const [outputHashMul, setOutputHashMul] = useState("");
   const [verified, setVerified] = useState(false);
 
   const [input, setInput] = useState({
@@ -94,18 +93,18 @@ function Complex() {
       };
       // console.log(input_2);
 
-  worker.onmessage = (e) => {
-    console.log(e.data);
-    if (e.data instanceof Error) {
-      toast.error("Error while calculating proof");
-      setPending(false);
-    } else {
-      console.log(e.data);
-      toast.success("Proof calculated");
-      setProof(e.data);
-      setPending(false);
-    }
-  };
+      worker.onmessage = (e) => {
+        console.log(e.data);
+        if (e.data instanceof Error) {
+          toast.error("Error while calculating proof");
+          setPending(false);
+        } else {
+          console.log(e.data);
+          toast.success("Proof calculated");
+          setProof(e.data);
+          setPending(false);
+        }
+      };
 
       worker.postMessage({ input });
     }
@@ -142,7 +141,7 @@ function Complex() {
     }
   };
 
-  Verifier the proof if there's one in state
+  // Verifier the proof if there's one in state
   useEffect(() => {
     setInput({
       ...input,

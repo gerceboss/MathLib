@@ -5,7 +5,7 @@ import "@nomicfoundation/hardhat-chai-matchers";
 
 import * as dotenv from "dotenv";
 dotenv.config();
-//change the config file to import the API_KEY  for deployment on speolia testnet of scroll
+
 const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.19",
@@ -16,7 +16,7 @@ const config: HardhatUserConfig = {
   },
   networks: {
     sepolia: {
-      url: "https://eth-sepolia.g.alchemy.com/v2/GNp-Xq9PjB97HhJo1H02Y-qpBHCHXOeO",
+      url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.API_KEY}`,
       accounts: [process.env.privateKey as string],
     },
   },
